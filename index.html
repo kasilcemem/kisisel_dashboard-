@@ -3,69 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kaş Bilgi Üssü</title>
+    <title>Kaş Dijital Kütüphane</title>
     <style>
-        :root { --bg: #0d1117; --card: #161b22; --text: #c9d1d9; --accent: #f85149; }
-        body { font-family: sans-serif; background: var(--bg); color: var(--text); padding: 20px; margin: 0; }
-        .grid { display: grid; grid-template-columns: 2fr 1fr; gap: 20px; max-width: 1400px; margin: auto; }
-        .card { background: var(--card); border: 1px solid #30363d; border-radius: 10px; padding: 20px; margin-bottom: 20px; }
-        h2 { color: var(--accent); border-bottom: 1px solid #30363d; padding-bottom: 10px; font-size: 1.1rem; }
-        .links a { display: block; background: #21262d; color: #58a6ff; text-decoration: none; padding: 10px; margin: 5px 0; border-radius: 6px; font-size: 0.85rem; transition: 0.2s; }
-        .links a:hover { background: #30363d; color: #f85149; }
-        iframe { width: 100%; height: 450px; border-radius: 8px; border: 1px solid #30363d; background: #000; }
+        body { font-family: sans-serif; background: #0d1117; color: #c9d1d9; padding: 20px; }
+        .container { max-width: 1000px; margin: auto; }
+        .bolum { background: #161b22; border: 1px solid #30363d; padding: 20px; border-radius: 10px; margin-bottom: 20px; }
+        h2 { color: #f85149; border-bottom: 1px solid #30363d; padding-bottom: 10px; }
+        .linkler a { 
+            display: block; 
+            background: #21262d; 
+            color: #58a6ff; 
+            padding: 15px; 
+            margin: 10px 0; 
+            text-decoration: none; 
+            border-radius: 6px;
+            font-weight: bold;
+        }
+        .linkler a:hover { background: #30363d; color: #ffffff; }
     </style>
 </head>
 <body>
 
-<div class="grid">
-    <div class="main">
-        <div class="card">
-            <h2>🎬 SİNEMA EKRANI</h2>
-            <iframe src="https://www.youtube.com/embed/gdtEZEH7AnY" allowfullscreen></iframe>
-        </div>
-        
-        <!-- ASİSTAN SADECE BURAYA DOSYA EKLEYEBİLİR -->
-        <div class="card">
-            <h2>📂 SENİN YÜKLEDİĞİN FİLMLER</h2>
-            <div id="sinema-alani" class="links">
-                <!-- SINEMA_LISTESI_BASLA -->
-<a href="veriler/sinema/yeni_film.url" target="_blank">📄 yeni_film.url</a>
-<a href="veriler/sinema/Neufert.url" target="_blank">📄 Neufert.url</a>
-<a href="veriler/sinema/ArchDaily.url" target="_blank">📄 ArchDaily.url</a>
-<a href="veriler/sinema/mirror_tarkowski.url" target="_blank">📄 mirror_tarkowski.url</a>
-<!-- SINEMA_LISTESI_BITIS -->
-            </div>
+<div class="container">
+    <!-- ANA ERİŞİM KAPISI -->
+    <div class="bolum">
+        <h2>🌐 KÜRESEL KÜTÜPHANELER (BURADAN GİR)</h2>
+        <div class="linkler">
+            <a href="https://archive.org/details/feature_films" target="_blank">🏛️ INTERNET ARCHIVE (FİLMLERE GİT)</a>
+            <a href="https://www.youtube.com/c/mosfilm/videos" target="_blank">🇷🇺 MOSFİLM ARŞİVİ</a>
+            <a href="https://www.openculture.com/freemoviesonline" target="_blank">📜 OPEN CULTURE</a>
         </div>
     </div>
 
-    <div class="sidebar">
-        <!-- İNTERNET KÜTÜPHANESİ - BURASI KİLİTLİ, ASİSTAN SİLEMEZ -->
-        <div class="card">
-            <h2>🏛️ KÜRESEL FİLM ARŞİVLERİ</h2>
-            <div class="links">
-                <a href="https://archive.org/details/feature_films" target="_blank">🌐 Internet Archive</a>
-                <a href="https://www.youtube.com/c/mosfilm/videos" target="_blank">🇷🇺 Mosfilm Arşivi</a>
-                <a href="https://www.openculture.com/freemoviesonline" target="_blank">📜 Open Culture</a>
-                <a href="https://mubi.com" target="_blank">🎞️ MUBI</a>
-            </div>
+    <!-- MİMARLIK KÜTÜPHANESİ -->
+    <div class="bolum">
+        <h2>🏛️ MİMARLIK PDF KİTAPLIĞI</h2>
+        <div id="mimari-liste" class="linkler">
+            <!-- MIMARI_DURAK -->
         </div>
+    </div>
 
-        <div class="card">
-            <h2>🏛️ MİMARİ KÜTÜPHANE (PDF)</h2>
-            <div id="mimari-alani" class="links">
-                <!-- MIMARI_LISTESI_BASLA -->
-<!-- MIMARI_LISTESI_BITIS -->
-            </div>
-        </div>
-
-        <div class="card">
-            <h2>🌿 BONSAİ TAKİP</h2>
-            <div id="bonsai-alani" class="links">
-                <!-- BONSAI_LISTESI_BASLA -->
-<a href="veriler/bonsai/mimari" target="_blank">📄 mimari</a>
-<a href="veriler/bonsai/deneme_bonsai.jpg" target="_blank">📄 deneme_bonsai.jpg</a>
-<!-- BONSAI_LISTESI_BITIS -->
-            </div>
+    <!-- SENİN YÜKLEDİĞİN FİLMLER -->
+    <div class="bolum">
+        <h2>📂 ÖZEL FİLM ARŞİVİN</h2>
+        <div id="film-liste" class="linkler">
+            <!-- SINEMA_DURAK -->
         </div>
     </div>
 </div>
