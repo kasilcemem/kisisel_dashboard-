@@ -1,15 +1,64 @@
-<div class="card" id="sinema">
-    <h3>🎬 Sinema Kütüphanesi</h3>
-    <div class="links">
-        <!-- Telifsiz ve Bağımsız Film Kaynakları -->
-        <a href="https://archive.org/details/feature_films" target="_blank">🌐 Internet Archive (Dünya Klasikleri)</a>
-        <a href="https://www.openculture.com/freemoviesonline" target="_blank">📚 Open Culture (1150+ Ücretsiz Film)</a>
-        <a href="https://mubi.com/tr/feed" target="_blank">🎥 MUBI Seçkileri (Entelektüel Sinema)</a>
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kişisel Bilgi Üssü | Kaş</title>
+    <style>
+        body { font-family: 'Inter', sans-serif; background: #0f172a; color: #f1f5f9; margin: 0; padding: 20px; }
+        .container { max-width: 1200px; margin: auto; }
+        h1 { color: #38bdf8; border-bottom: 2px solid #1e293b; padding-bottom: 10px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; margin-top: 20px; }
+        .card { background: #1e293b; padding: 20px; border-radius: 12px; border-top: 4px solid #38bdf8; }
+        .links a { display: block; color: #94a3b8; text-decoration: none; padding: 8px 0; border-bottom: 1px solid #334155; transition: 0.3s; }
+        .links a:hover { color: #38bdf8; padding-left: 5px; }
+        .player { margin-top: 15px; background: #0f172a; padding: 10px; border-radius: 8px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Kişisel Bilgi Üssü</h1>
+        <div class="grid">
+            
+            <!-- SINEMA BÖLÜMÜ -->
+            <div class="card" style="border-color: #e74c3c;">
+                <h3>🎬 Sinema Kütüphanesi</h3>
+                <div class="links">
+                    <!-- SINEMA_LISTESI -->
+                    <a href="https://archive.org/details/feature_films" target="_blank">🌐 Internet Archive (Klasikler)</a>
+                    <a href="https://mubi.com/tr/feed" target="_blank">🎥 MUBI Seçkileri</a>
+                </div>
+                <div class="player">
+                    <iframe width="100%" height="120" src="https://www.youtube.com/embed/videoseries?list=PLB_3O_L2kXNfXv0K_XoXfX7XfL6Xf8XfX" frameborder="0" allowfullscreen></iframe>
+                </div>
+            </div>
+
+            <!-- BONSAI BÖLÜMÜ -->
+            <div class="card" style="border-color: #2ecc71;">
+                <h3>🌿 Bonsai Sanatı</h3>
+                <div class="links">
+                    <!-- BONSAI_LISTESI -->
+                    <p style="font-size: 0.8em; color: #64748b;">Yüklediğin ağaç fotoğrafları burada görünecek.</p>
+                </div>
+            </div>
+
+            <!-- MİMARİ BÖLÜMÜ -->
+            <div class="card" style="border-color: #f1c40f;">
+                <h3>🏗️ Mimari Çizim</h3>
+                <div class="links">
+                    <!-- MIMARI_LISTESI -->
+                </div>
+            </div>
+
+            <!-- RADYO BÖLÜMÜ -->
+            <div class="card" style="border-color: #9b59b6;">
+                <h3>📻 Dünya Radyoları</h3>
+                <div class="player">
+                    <iframe src="https://radio.garden/visit/kas/I8tN3X_v/embed" width="100%" height="200" frameborder="0"></iframe>
+                </div>
+            </div>
+
+        </div>
     </div>
-    
-    <!-- Dashboard içi Mini Oynatıcı (Örnek bir telifsiz film) -->
-    <div style="margin-top: 15px; border-top: 1px solid #475569; padding-top: 10px;">
-        <p style="font-size: 0.8em; color: #38bdf8;">📽️ Haftanın Bağımsız Seçkisi:</p>
-        <iframe width="100%" height="150" src="https://www.youtube.com/embed/videoseries?list=PLB_3O_L2kXNfXv0K_XoXfX7XfL6Xf8XfX" frameborder="0" allowfullscreen></iframe>
-    </div>
-</div>
+</body>
+</html>
