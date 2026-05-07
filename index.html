@@ -3,38 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kaş Kütüphanesi</title>
+    <title>Kaş Dijital Arşiv</title>
     <style>
-        body { font-family: sans-serif; background: #0d1117; color: #c9d1d9; text-align: center; padding: 50px 20px; }
-        .ana-buton { 
+        body { font-family: sans-serif; background: #0d1117; color: white; text-align: center; padding-top: 100px; }
+        .buton { 
             display: inline-block; 
-            background: #f85149; 
+            background: #238636; 
             color: white; 
-            padding: 20px 40px; 
-            font-size: 20px; 
+            padding: 25px 50px; 
             text-decoration: none; 
-            border-radius: 12px; 
+            border-radius: 10px; 
+            font-size: 22px; 
             font-weight: bold;
-            box-shadow: 0 4px 15px rgba(248, 81, 73, 0.4);
+            border: 2px solid #2ea043;
         }
-        .ana-buton:hover { background: #da3633; transform: scale(1.05); }
-        .alt-bolum { margin-top: 50px; border-top: 1px solid #30363d; padding-top: 30px; text-align: left; max-width: 600px; margin-left: auto; margin-right: auto; }
-        .kitap-link { display: block; color: #58a6ff; padding: 10px; text-decoration: none; background: #161b22; margin-bottom: 5px; border-radius: 5px; }
+        .alt-menu { margin-top: 40px; }
+        .alt-menu a { color: #58a6ff; text-decoration: none; margin: 0 15px; font-size: 14px; }
     </style>
 </head>
 <body>
 
-    <h1>Kütüphane Paneli</h1>
+    <h1>Kütüphane Girişi</h1>
+    <br><br>
     
-    <!-- İŞTE ARADIĞIN O BUTON -->
-    <p>İnternet Arşivi'ne doğrudan giriş yapmak için aşağıdaki butona bas:</p>
-    <a href="https://archive.org/details/feature_films" target="_blank" class="ana-buton">🏛️ INTERNET ARCHIVE'I AÇ</a>
+    <!-- EN SAĞLAM GİRİŞ LİNKİ -->
+    <a href="https://archive.org/details/movies" target="_blank" class="buton">🏛️ INTERNET ARCHIVE'I AÇ</a>
 
-    <div class="alt-bolum">
-        <h3>📚 Yüklediğin Mimari Kitaplar</h3>
-        <div id="mimari-liste">
-            <!-- MIMARI_DURAK -->
-        </div>
+    <div class="alt-menu">
+        <p>Eğer yukarıdaki açılmazsa yedek kapılar:</p>
+        <a href="https://www.youtube.com/c/mosfilm/videos" target="_blank">🎬 Mosfilm</a>
+        <a href="https://mubi.com" target="_blank">🎞️ MUBI</a>
     </div>
 
 </body>
