@@ -2,14 +2,13 @@ import os
 import shutil
 
 AYARLAR = {
-    "sinema": [".mp4", ".mkv", ".url", ".txt"],
+    "sinema": [".mp4", ".mkv", ".url", ".txt", ".pdf"],
     "bonsai": [".jpg", ".jpeg", ".png"],
-    "mimari": [".pdf", ".dwg", ".dxf", ".url"],
-    "frekans": [".mp3", ".wav"]
+    "mimari": [".pdf", ".dwg", ".dxf", ".url"]
 }
 
 def sistem_calistir():
-    # 1. Dosyaları Klasörlere Taşı
+    # 1. Dosyaları Düzenle
     for dosya in os.listdir("."):
         if os.path.isfile(dosya) and dosya not in ["asistan.py", "index.html"]:
             _, uzanti = os.path.splitext(dosya)
@@ -19,30 +18,26 @@ def sistem_calistir():
                     if not os.path.exists(yol): os.makedirs(yol)
                     shutil.move(dosya, f"{yol}/{dosya}")
 
-    # 2. HTML'i Güncelle
+    # 2. Arayüzü Güncelle
     if os.path.exists("index.html"):
         with open("index.html", "r", encoding="utf-8") as f:
-            html_icerik = f.read()
+            html = f.read()
 
         for klasor in AYARLAR.keys():
             isaretci = f"<!-- {klasor.upper()}_LISTESI -->"
             yol = f"veriler/{klasor}"
-            yeni_linkler = ""
-            
+            linkler = ""
             if os.path.exists(yol):
-                dosyalar = os.listdir(yol)
-                for d in dosyalar:
-                    yeni_linkler += f'<a href="{yol}/{d}" target="_blank">🔗 {d}</a>\n'
+                for d in os.listdir(yol):
+                    linkler += f'<a href="{yol}/{d}" target="_blank">📂 {d}</a>\n'
             
-            if isaretci in html_icerik:
-                # Mevcut listeyi temizleyip yeniden ekleyen mantık
-                temiz_html = html_icerik.split(isaretci)
-                if len(temiz_html) > 1:
-                    # Sadece en son yüklenenleri değil, klasördeki her şeyi listeler
-                    html_icerik = temiz_html[0] + yeni_linkler + isaretci + temiz_html[-1].split("</a>")[-1]
+            if isaretci in html:
+                parcalar = html.split(isaretci)
+                if len(parcalar) > 1:
+                    html = parcalar[0] + linkler + isaretci + parcalar[-1].split("</a>")[-1]
 
         with open("index.html", "w", encoding="utf-8") as f:
-            f.write(html_icerik)
+            f.write(html)
 
 if __name__ == "__main__":
     sistem_calistir()
