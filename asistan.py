@@ -1,25 +1,28 @@
 import os
 import shutil
 
+# 1. AYARLAR: Hangi dosya hangi klasöre gidecek?
 AYARLAR = {
-    "sinema": [".mp4", ".mkv", ".url", ".txt", ".pdf"],
+    "sinema": [".mp4", ".mkv", ".url", ".txt"],
     "bonsai": [".jpg", ".jpeg", ".png"],
-    "mimari": [".pdf", ".dwg", ".dxf"],
+    "mimari": [".pdf", ".dwg", ".dxf", ".url"], # .url buraya eklendi!
     "frekans": [".mp3", ".wav"]
 }
 
 def sistem_calistir():
-    # 1. Dosyaları Taşı
+    # 1. ADIM: Dosyaları Klasörlere Taşı
     for dosya in os.listdir("."):
         if os.path.isfile(dosya) and dosya not in ["asistan.py", "index.html"]:
             _, uzanti = os.path.splitext(dosya)
             for klasor, uzantilar in AYARLAR.items():
                 if uzanti.lower() in uzantilar:
-                    yol = f"veriler/{klasor}"
-                    if not os.path.exists(yol): os.makedirs(yol)
-                    shutil.move(dosya, f"{yol}/{dosya}")
+                    hedef_yol = f"veriler/{klasor}"
+                    if not os.path.exists(hedef_yol): 
+                        os.makedirs(hedef_yol)
+                    shutil.move(dosya, f"{hedef_yol}/{dosya}")
+                    print(f"Taşındı: {dosya} -> {klasor}")
 
-    # 2. HTML'i Güncelle
+    # 2. ADIM: HTML Sayfasını (Dashboard) Güncelle
     if os.path.exists("index.html"):
         with open("index.html", "r", encoding="utf-8") as f:
             html = f.read()
@@ -27,15 +30,22 @@ def sistem_calistir():
         for klasor in AYARLAR.keys():
             isaretci = f"<!-- {klasor.upper()}_LISTESI -->"
             yol = f"veriler/{klasor}"
-            linkler = ""
-            if os.path.exists(yol):
-                for d in os.listdir(yol):
-                    linkler += f'<a href="{yol}/{d}" target="_blank">🔗 {d}</a>\n'
+            linkler_html = ""
             
-            # Eski listeyi temizle ve yenisini ekle
+            if os.path.exists(yol):
+                dosyalar = os.listdir(yol)
+                for d in dosyalar:
+                    # Tıklanabilir linkleri oluşturur
+                    linkler_html += f'<a href="{yol}/{d}" target="_blank">🔗 {d}</a>\n'
+            
+            # HTML içindeki işareti bul ve listeyi oraya yerleştir
             if isaretci in html:
-                # Bu mantık listenin birikmesini önler, her seferinde güncel klasörü yazar
-                html = html.replace(isaretci, linkler + isaretci) if linkler else html
+                # Önceki listeyi temizlemek için işareti koruyarak değiştirme yapıyoruz
+                # Bu kısım her çalışma anında listeyi sıfırdan oluşturur
+                parcalar = html.split(isaretci)
+                if len(parcalar) > 1:
+                    # Sadece işaretçinin olduğu yeri yeni linklerle doldurur
+                    html = parcalar[0] + linkler_html + isaretci + parcalar[1].split(f"<!-- /{klasor.upper()} -->")[-1]
 
         with open("index.html", "w", encoding="utf-8") as f:
             f.write(html)
