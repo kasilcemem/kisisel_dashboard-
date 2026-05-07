@@ -1,36 +1,35 @@
 import os
 import shutil
 
-# Hedef klasörleri tanımlayalım
+# Kategoriler ve uzantılar
 KLASORLER = {
-    "bonsai": [".jpg", ".png", ".jpeg"], # Bonsai fotoğrafları
-    "mimari": [".pdf", ".dwg"],          # Mimari planlar
-    "frekans": [".mp3", ".wav"]          # Ses dosyaları
+    "bonsai": [".jpg", ".jpeg", ".png"],
+    "mimari": [".pdf", ".dwg", ".dxf"],
+    "sinema": [".mp4", ".mkv", ".avi"], # Film dosyaları veya fragmanlar
+    "frekans": [".mp3", ".wav"]
 }
 
+def index_guncelle():
+    # Klasörlerdeki dosyaları listele ve HTML'e yazılacak hale getir
+    html_icerik = ""
+    for klasor in KLASORLER.keys():
+        yol = f"veriler/{klasor}"
+        if os.path.exists(yol):
+            dosyalar = os.listdir(yol)
+            liste_elemanlari = "".join([f'<a href="{yol}/{d}">{d}</a>' for d in dosyalar])
+            # HTML içindeki ilgili id alanını bulup güncellemek için işaretler
+            print(f"{klasor.capitalize()} listesi güncellendi.")
+
 def dosyalari_duzenle():
-    # Ana dizindeki dosyaları tara
     for dosya in os.listdir("."):
-        # Klasörleri atla, sadece dosyalara bak
-        if os.path.isfile(dosya):
-            dosya_adi, uzanti = os.path.splitext(dosya)
-            
-            # Uzantıya göre hangi klasöre gideceğini bul
-            hedef_bulundu = False
+        if os.path.isfile(dosya) and dosya not in ["asistan.py", "index.html"]:
+            _, uzanti = os.path.splitext(dosya)
             for klasor, uzantilar in KLASORLER.items():
                 if uzanti.lower() in uzantilar:
-                    # Eğer klasör yoksa oluştur
-                    if not os.path.exists(f"veriler/{klasor}"):
-                        os.makedirs(f"veriler/{klasor}")
-                    
-                    # Dosyayı taşı
-                    shutil.move(dosya, f"veriler/{klasor}/{dosya}")
-                    print(f"Taşındı: {dosya} -> {klasor}")
-                    hedef_bulundu = True
+                    hedef = f"veriler/{klasor}"
+                    if not os.path.exists(hedef): os.makedirs(hedef)
+                    shutil.move(dosya, f"{hedef}/{dosya}")
                     break
-            
-            if not hedef_bulundu and dosya != "asistan.py":
-                print(f"Atlandı (Uygun klasör yok): {dosya}")
 
 if __name__ == "__main__":
     dosyalari_duzenle()
