@@ -3,198 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kişisel Bilgi & Arşiv Üssü</title>
+    <title>Kaş Dijital Arşiv</title>
     <style>
-        :root {
-            --bg-color: #0b0e14;
-            --card-bg: #161b22;
-            --accent-color: #f85149; /* Sinematik Kırmızı */
-            --text-color: #c9d1d9;
-            --link-color: #58a6ff;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            margin: 0;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
-
-        header {
-            padding: 2rem;
-            text-align: center;
-            background: linear-gradient(180deg, #161b22 0%, transparent 100%);
-        }
-
-        header h1 {
-            margin: 0;
-            font-weight: 300;
-            letter-spacing: 4px;
-            color: #ffffff;
-            font-size: 1.8rem;
-        }
-
-        .main-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 20px;
-            display: grid;
-            grid-template-columns: 3fr 1fr;
-            gap: 25px;
-        }
-
-        /* Sol Taraf: Sinema ve Oynatıcı */
-        .cinema-section {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        .video-container {
-            background: #000;
-            border-radius: 12px;
-            overflow: hidden;
-            border: 1px solid #30363d;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            aspect-ratio: 16 / 9;
-        }
-
-        /* Sağ Taraf: Kütüphane ve Arşiv */
-        .sidebar {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        .card {
-            background-color: var(--card-bg);
-            border: 1px solid #30363d;
-            border-radius: 8px;
-            padding: 1.5rem;
-            transition: transform 0.2s;
-        }
-
-        .card:hover {
-            border-color: var(--accent-color);
-        }
-
-        .card h3 {
-            margin-top: 0;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            color: var(--accent-color);
-            border-bottom: 1px solid #30363d;
-            padding-bottom: 10px;
-            display: flex;
-            justify-content: space-between;
-        }
-
-        .links-list {
-            margin-top: 15px;
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-            max-height: 250px;
-            overflow-y: auto;
-        }
-
-        .links-list a {
-            color: var(--text-color);
-            text-decoration: none;
-            font-size: 0.85rem;
-            padding: 8px 12px;
-            background: #21262d;
-            border-radius: 6px;
-            display: flex;
-            align-items: center;
-            transition: 0.2s;
-        }
-
-        .links-list a:hover {
-            background: #30363d;
-            color: #ffffff;
-            transform: translateX(5px);
-        }
-
-        .links-list a::before {
-            content: "▶";
-            font-size: 0.6rem;
-            margin-right: 10px;
-            color: var(--accent-color);
-        }
-
-        .footer-info {
-            text-align: center;
-            padding: 2rem;
-            font-size: 0.7rem;
-            color: #484f58;
-            letter-spacing: 1px;
-        }
-
-        /* Scrollbar Styling */
-        ::-webkit-scrollbar { width: 5px; }
-        ::-webkit-scrollbar-track { background: #0b0e14; }
-        ::-webkit-scrollbar-thumb { background: #30363d; border-radius: 10px; }
+        :root { --bg: #0d1117; --card: #161b22; --text: #c9d1d9; --accent: #f85149; }
+        body { font-family: sans-serif; background: var(--bg); color: var(--text); margin: 0; padding: 20px; }
+        .grid { display: grid; grid-template-columns: 2fr 1fr; gap: 20px; max-width: 1400px; margin: auto; }
+        .card { background: var(--card); border: 1px solid #30363d; border-radius: 10px; padding: 20px; margin-bottom: 20px; }
+        h2 { color: var(--accent); border-bottom: 1px solid #30363d; padding-bottom: 10px; font-size: 1.1rem; }
+        .links a { display: block; background: #21262d; color: #58a6ff; text-decoration: none; padding: 10px; margin: 5px 0; border-radius: 6px; font-size: 0.9rem; transition: 0.2s; }
+        .links a:hover { background: #30363d; transform: translateX(5px); }
+        iframe { width: 100%; height: 450px; border-radius: 8px; border: 1px solid #30363d; background: #000; }
     </style>
 </head>
 <body>
 
-<header>
-    <h1>KAS ARCHIVE PRO</h1>
-</header>
-
-<div class="main-container">
-    
-    <!-- SINEMA VE ANA EKRAN -->
-    <div class="cinema-section">
-        <div class="video-container">
-            <iframe width="100%" height="100%" src="https://www.youtube.com/embed/gdtEZEH7AnY" frameborder="0" allowfullscreen></iframe>
+<div class="grid">
+    <!-- SOL KOLON: SİNEMA -->
+    <div class="main">
+        <div class="card">
+            <h2>🎬 SİNEMA EKRANI</h2>
+            <iframe src="https://www.youtube.com/embed/gdtEZEH7AnY" allowfullscreen></iframe>
         </div>
         
         <div class="card">
-            <h3>🎬 Sinema Kütüphanesi <span>(Yüklenenler)</span></h3>
-            <div class="links-list">
+            <h2>📂 SENİN FİLM ARŞİVİN</h2>
+            <div class="links">
                 <!-- SINEMA_LISTESI -->
             </div>
         </div>
     </div>
 
-    <!-- YAN PANEL (MİMARİ VE BONSAI) -->
+    <!-- SAĞ KOLON: MİMARİ VE BONSAI -->
     <div class="sidebar">
-        
         <div class="card">
-            <h3>🏛️ Mimari Arşiv</h3>
-            <div class="links-list">
+            <h2>🏛️ MİMARİ KÜTÜPHANE (PDF)</h2>
+            <div class="links">
                 <!-- MIMARI_LISTESI -->
-                <a href="https://www.archdaily.com" target="_blank">ArchDaily Global</a>
-                <a href="https://www.neufert-international.com" target="_blank">Neufert International</a>
             </div>
         </div>
 
         <div class="card">
-            <h3>🌿 Bonsai Sanatı</h3>
-            <div class="links-list">
+            <h2>🌿 BONSAİ TAKİP</h2>
+            <div class="links">
                 <!-- BONSAI_LISTESI -->
             </div>
         </div>
 
-        <div class="card" style="opacity: 0.6;">
-            <h3>🔍 Global Kaynaklar</h3>
-            <div class="links-list">
-                <a href="https://archive.org" target="_blank">Internet Archive</a>
-                <a href="https://www.openculture.com" target="_blank">Open Culture</a>
+        <div class="card">
+            <h2>🌐 İNTERNET KÜTÜPHANELERİ</h2>
+            <div class="links">
+                <a href="https://archive.org/details/feature_films" target="_blank">🌐 Internet Archive</a>
+                <a href="https://www.youtube.com/c/mosfilm/videos" target="_blank">🇷🇺 Mosfilm Arşivi</a>
+                <a href="https://www.openculture.com/freemoviesonline" target="_blank">📜 Open Culture</a>
             </div>
         </div>
-
     </div>
-</div>
-
-<div class="footer-info">
-    KAŞ COMMAND CENTER // AUTOMATED BY GEMINI ASISTANI
 </div>
 
 </body>
