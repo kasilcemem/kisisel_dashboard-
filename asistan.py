@@ -7,8 +7,8 @@ AYARLAR = {
     "mimari": [".pdf", ".dwg", ".dxf", ".url"]
 }
 
-def sistem_calistir():
-    # 1. Dosyaları Düzenle
+def baslat():
+    # 1. Dosya Düzenleme
     for dosya in os.listdir("."):
         if os.path.isfile(dosya) and dosya not in ["asistan.py", "index.html"]:
             _, uzanti = os.path.splitext(dosya)
@@ -18,26 +18,25 @@ def sistem_calistir():
                     if not os.path.exists(yol): os.makedirs(yol)
                     shutil.move(dosya, f"{yol}/{dosya}")
 
-    # 2. Arayüzü Güncelle
+    # 2. Ekrana Yazma
     if os.path.exists("index.html"):
         with open("index.html", "r", encoding="utf-8") as f:
             html = f.read()
 
         for klasor in AYARLAR.keys():
-            isaretci = f"<!-- {klasor.upper()}_LISTESI -->"
+            marker = f"<!-- {klasor.upper()}_LISTESI -->"
             yol = f"veriler/{klasor}"
-            linkler = ""
+            liste = ""
             if os.path.exists(yol):
                 for d in os.listdir(yol):
-                    linkler += f'<a href="{yol}/{d}" target="_blank">📂 {d}</a>\n'
+                    liste += f'<a href="{yol}/{d}" target="_blank">▶️ {d}</a>\n'
             
-            if isaretci in html:
-                parcalar = html.split(isaretci)
-                if len(parcalar) > 1:
-                    html = parcalar[0] + linkler + isaretci + parcalar[-1].split("</a>")[-1]
+            if marker in html:
+                parts = html.split(marker)
+                html = parts[0] + liste + marker + parts[-1].split("</a>")[-1]
 
         with open("index.html", "w", encoding="utf-8") as f:
             f.write(html)
 
 if __name__ == "__main__":
-    sistem_calistir()
+    baslat()
