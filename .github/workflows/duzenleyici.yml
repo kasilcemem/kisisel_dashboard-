@@ -1,0 +1,17 @@
+name: Otomatik Dosya Duzenleyici
+on: [push] # Dosya yüklediğinde çalışır
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Python Calistir
+        run: python asistan.py
+      - name: Degisiklikleri Kaydet
+        run: |
+          git config --global user.name 'GitHub Action'
+          git config --global user.email 'action@github.com'
+          git add .
+          git commit -m "Dosyalar otomatik düzenlendi" || exit 0
+          git push
