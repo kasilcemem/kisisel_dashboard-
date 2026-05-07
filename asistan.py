@@ -1,36 +1,44 @@
 import os
 import shutil
 
-# Ayarlar: Uzantıları ve hedef klasörleri tanımlıyoruz
-AYARLAR = {
+# Neyi nereye taşıyacağız?
+HEDEFLER = {
     "sinema": [".mp4", ".mkv", ".url", ".txt"],
-    "mimari": [".pdf", ".dwg", ".url"],
-    "bonsai": [".jpg", ".png", ".jpeg"]
+    "mimari": [".pdf", ".dwg"],
+    "bonsai": [".jpg", ".jpeg", ".png"]
 }
 
-def baslat():
-    # 1. Ana dizindeki dosyaları tara
+def sistemi_guncelle():
+    # 1. Dosyaları klasörlerine taşı
     for dosya in os.listdir("."):
-        # Sadece dosyaları al, asistan ve index dosyalarını elleme
         if os.path.isfile(dosya) and dosya not in ["asistan.py", "index.html"]:
-            dosya_adi, uzanti = os.path.splitext(dosya)
-            
-            for klasor, uzantilar in AYARLAR.items():
-                if uzanti.lower() in uzantilar:
-                    # Klasör yoksa oluştur (Hata almamak için kritik adım)
-                    hedef_klasor = os.path.join("veriler", klasor)
-                    os.makedirs(hedef_klasor, exist_ok=True)
-                    
-                    # Dosyayı taşı
-                    hedef_yol = os.path.join(hedef_klasor, dosya)
-                    try:
-                        shutil.move(dosya, hedef_yol)
-                        print(f"Başarıyla taşındı: {dosya} -> {hedef_klasor}")
-                    except Exception as e:
-                        print(f"Taşıma hatası: {e}")
+            uzanti = os.path.splitext(dosya)[1].lower()
+            for klasor, uzantilar in HEDEFLER.items():
+                if uzanti in uzantilar:
+                    yol = f"veriler/{klasor}"
+                    os.makedirs(yol, exist_ok=True)
+                    shutil.move(dosya, f"{yol}/{dosya}")
 
-    # 2. HTML'i güncelleme kısmını koru (Ekranda görünmesi için)
-    # (Buradaki kodların index.html ile uyumlu olduğundan emin ol)
+    # 2. HTML'i güncelle
+    if os.path.exists("index.html"):
+        with open("index.html", "r", encoding="utf-8") as f:
+            icerik = f.read()
+
+        for klasor in HEDEFLER.keys():
+            isaret = f"<!-- {klasor.upper()}_LISTESI -->"
+            yol = f"veriler/{klasor}"
+            linkler = ""
+            if os.path.exists(yol):
+                for d in os.listdir(yol):
+                    linkler += f'<a href="{yol}/{d}" target="_blank">📄 {d}</a>\n'
+            
+            if isaret in icerik:
+                parcalar = icerik.split(isaret)
+                # Sadece linkleri tazele, diğer her şeyi koru
+                icerik = parcalar[0] + linkler + isaret + parcalar[-1].split("</a>")[-1]
+
+        with open("index.html", "w", encoding="utf-8") as f:
+            f.write(icerik)
 
 if __name__ == "__main__":
-    baslat()
+    sistemi_guncelle()
