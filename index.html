@@ -3,54 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kaş Dijital Kütüphane</title>
+    <title>Kaş Kütüphanesi</title>
     <style>
-        body { font-family: sans-serif; background: #0d1117; color: #c9d1d9; padding: 20px; }
-        .container { max-width: 1000px; margin: auto; }
-        .bolum { background: #161b22; border: 1px solid #30363d; padding: 20px; border-radius: 10px; margin-bottom: 20px; }
-        h2 { color: #f85149; border-bottom: 1px solid #30363d; padding-bottom: 10px; }
-        .linkler a { 
-            display: block; 
-            background: #21262d; 
-            color: #58a6ff; 
-            padding: 15px; 
-            margin: 10px 0; 
+        body { font-family: sans-serif; background: #0d1117; color: #c9d1d9; text-align: center; padding: 50px 20px; }
+        .ana-buton { 
+            display: inline-block; 
+            background: #f85149; 
+            color: white; 
+            padding: 20px 40px; 
+            font-size: 20px; 
             text-decoration: none; 
-            border-radius: 6px;
+            border-radius: 12px; 
             font-weight: bold;
+            box-shadow: 0 4px 15px rgba(248, 81, 73, 0.4);
         }
-        .linkler a:hover { background: #30363d; color: #ffffff; }
+        .ana-buton:hover { background: #da3633; transform: scale(1.05); }
+        .alt-bolum { margin-top: 50px; border-top: 1px solid #30363d; padding-top: 30px; text-align: left; max-width: 600px; margin-left: auto; margin-right: auto; }
+        .kitap-link { display: block; color: #58a6ff; padding: 10px; text-decoration: none; background: #161b22; margin-bottom: 5px; border-radius: 5px; }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <!-- ANA ERİŞİM KAPISI -->
-    <div class="bolum">
-        <h2>🌐 KÜRESEL KÜTÜPHANELER (BURADAN GİR)</h2>
-        <div class="linkler">
-            <a href="https://archive.org/details/feature_films" target="_blank">🏛️ INTERNET ARCHIVE (FİLMLERE GİT)</a>
-            <a href="https://www.youtube.com/c/mosfilm/videos" target="_blank">🇷🇺 MOSFİLM ARŞİVİ</a>
-            <a href="https://www.openculture.com/freemoviesonline" target="_blank">📜 OPEN CULTURE</a>
-        </div>
-    </div>
+    <h1>Kütüphane Paneli</h1>
+    
+    <!-- İŞTE ARADIĞIN O BUTON -->
+    <p>İnternet Arşivi'ne doğrudan giriş yapmak için aşağıdaki butona bas:</p>
+    <a href="https://archive.org/details/feature_films" target="_blank" class="ana-buton">🏛️ INTERNET ARCHIVE'I AÇ</a>
 
-    <!-- MİMARLIK KÜTÜPHANESİ -->
-    <div class="bolum">
-        <h2>🏛️ MİMARLIK PDF KİTAPLIĞI</h2>
-        <div id="mimari-liste" class="linkler">
+    <div class="alt-bolum">
+        <h3>📚 Yüklediğin Mimari Kitaplar</h3>
+        <div id="mimari-liste">
             <!-- MIMARI_DURAK -->
         </div>
     </div>
-
-    <!-- SENİN YÜKLEDİĞİN FİLMLER -->
-    <div class="bolum">
-        <h2>📂 ÖZEL FİLM ARŞİVİN</h2>
-        <div id="film-liste" class="linkler">
-            <a href="veriler/sinema/yeni_film.url" target="_blank">🎬 yeni_film.url</a><a href="veriler/sinema/Neufert.url" target="_blank">🎬 Neufert.url</a><a href="veriler/sinema/ArchDaily.url" target="_blank">🎬 ArchDaily.url</a><a href="veriler/sinema/mirror_tarkowski.url" target="_blank">🎬 mirror_tarkowski.url</a><!-- SINEMA_DURAK -->
-        </div>
-    </div>
-</div>
 
 </body>
 </html>
